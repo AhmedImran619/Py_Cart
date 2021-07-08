@@ -1,3 +1,8 @@
 from django.db import models
 
-# Create your models here.
+
+class Product(models.Model):
+    id = models.AutoField
+    name = models.CharField(max_length=50)
+    description = models.CharField(max_length=300)
+    date_added = models.DateField()
