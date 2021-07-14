@@ -1,9 +1,15 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from shop.models import Product
 
 
 def index(request):
-    return render(request, 'shop/index.html')
+    products = list(Product.objects.all())
+    output = ''
+    for prod in products:
+        output = output+prod.name+','
+
+    return render(request, 'shop/index.html', context={'output':output})
 
 
 def cart(request):
