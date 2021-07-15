@@ -1,9 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Product
 
 
 def index(request):
-    return render(request, 'shop/index.html')
+    PRODUCTS_COUNT_FOR_ACTIVE_SLIDE = int(5)
+    products = Product.objects.all()
+
+    tab_indicator_count = len(products) / PRODUCTS_COUNT_FOR_ACTIVE_SLIDE
+
+    context = {
+        'products': products,
+        # 'tab_indicator_count': tab_indicator_count,
+        # 'items_range': range(PRODUCTS_COUNT_FOR_SLIDER),
+        # 'products_count': PRODUCTS_COUNT_FOR_SLIDER
+    }
+
+    return render(request, 'shop/index.html', context=context)
 
 
 def cart(request):
