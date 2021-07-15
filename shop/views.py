@@ -1,15 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from shop.models import Product
 
 
 def index(request):
-    products = list(Product.objects.all())
-    output = ''
-    for prod in products:
-        output = output+prod.name+','
-
-    return render(request, 'shop/index.html', context={'output':output})
+    return render(request, 'shop/index.html')
 
 
 def cart(request):
@@ -20,51 +14,51 @@ def categories(request):
     return HttpResponse('Categories Page')
 
 
-def search():
+def search(request):
     return HttpResponse('Search Page')
 
 
-def about():
+def about(request):
     return HttpResponse('About Page')
 
 
 # ------------------------------------------------
 
-def product_list():
+def product_list(request):
     return HttpResponse('Product List Page')
 
 
-def product_detail():
+def product_detail(request):
     return HttpResponse('Product Detail Page')
 
 
 # ------------------------------------------------
 
-def login():
+def login(request):
     return HttpResponse('Login Page')
 
 
-def register():
+def register(request):
     return HttpResponse('Register Page')
 
 
 # ------------------------------------------------
 
-def account():
+def account(request):
     return HttpResponse('Account Page')
 
 
-def account_detail():
+def account_detail(request):
     return HttpResponse('Account Detail Page')
 
 
-def favorites():
+def favorites(request):
     return HttpResponse('Favorites Page')
 
 
-def orders():
+def orders(request):
     return HttpResponse('Order Page')
 
 
-def order_detail():
+def order_detail(request):
     return HttpResponse('Order Detail Page')
