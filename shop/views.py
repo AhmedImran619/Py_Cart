@@ -1,19 +1,22 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Product
+from math import ceil
 
 
 def index(request):
-    PRODUCTS_COUNT_FOR_ACTIVE_SLIDE = int(5)
     products = Product.objects.all()
 
-    tab_indicator_count = len(products) / PRODUCTS_COUNT_FOR_ACTIVE_SLIDE
+    products_per_slide = 4
+
+    n = len(products)
+    no_of_slides = (n // 4) + ceil((n / 4) - (n // 4))
 
     context = {
         'products': products,
-        # 'tab_indicator_count': tab_indicator_count,
-        # 'items_range': range(PRODUCTS_COUNT_FOR_SLIDER),
-        # 'products_count': PRODUCTS_COUNT_FOR_SLIDER
+        'no_of_slides': no_of_slides,
+        'products_per_slide': range(products_per_slide),
+        'range': range(no_of_slides)
     }
 
     return render(request, 'shop/index.html', context=context)
